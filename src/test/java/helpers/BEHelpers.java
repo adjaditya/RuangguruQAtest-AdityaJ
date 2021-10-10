@@ -9,17 +9,17 @@ public class BEHelpers {
     APIUtils util;
     Response latestResponse;
 
-    int defaultPage;
-    int defaultPageSize;
+    int requestedPage;
+    int requestedPageSize;
 
     public BEHelpers() {
         util = new APIUtils();
-        defaultPage = 1;
-        defaultPageSize  = 20;
+        requestedPage = 1;
+        requestedPageSize  = 20;
     }
 
     public void getSearchResult(String query) {
-        latestResponse = util.getSearchResults(query, defaultPage, defaultPageSize);
+        latestResponse = util.getSearchResults(query, requestedPage, requestedPageSize);
     }
 
     public void verifyCodeOfLatestResponse(int expectedCode) {
