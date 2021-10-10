@@ -38,4 +38,14 @@ public class BackendStepDefs {
         helper.verifyValueOfAnAttribute("status", "success");
         helper.verifyValueOfAnAttribute("message", "success");
     }
+
+    @When("^User GET search results with query ([a-z|A-Z]*) and ([0-9]*) (min|max) price$")
+    public void userGETSearchResultsWithQueryAndMinPrice(String query, int amount, String minOrMax) {
+        helper.getSearchResultWithPriceFilter(query, amount, minOrMax);
+    }
+
+    @Then("^Verify that all prices in the results satisfy (min|max) price condition for amount ([0-9]*)$")
+    public void verifyThatAllPricesInTheResultsSatisfyMinOrMaxPriceConditionForAmountPrice(String minOrMax, String price) {
+        helper.verifyPriceFilter(minOrMax, price);
+    }
 }

@@ -9,6 +9,16 @@ Feature: Skill Academy's main search bar API test cases
     And Verify user is in page 1
     And Verify status and message says success
 
+  @Sanity @Current
+  Scenario Outline: Test <minOrMax> Price parameter
+    When User GET search results with query business and 300000 <minOrMax> price
+    Then Verify that all prices in the results satisfy <minOrMax> price condition for amount 300000
+
+    Examples:
+      | minOrMax |
+      | min      |
+      | max      |
+
   @Regression
   Scenario: Search where the result will return empty data
     When User GET search results with query "abcde"

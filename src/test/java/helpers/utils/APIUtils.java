@@ -21,4 +21,14 @@ public class APIUtils {
                 .when()
                 .get(searchUrl);
     }
+
+    public Response getSearchResultsWithPriceFilter(String query, int minPrice, int maxPrice) {
+        return RestAssured.given()
+                .contentType(ContentType.JSON)
+                .queryParam("searchQuery", query)
+                .queryParam("minPrice", minPrice)
+                .queryParam("maxPrice", maxPrice)
+                .when()
+                .get(searchUrl);
+    }
 }

@@ -4,6 +4,9 @@ import helpers.utils.APIUtils;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
+import java.util.List;
+import java.util.Map;
+
 public class BEHelpers {
 
     APIUtils util;
@@ -22,6 +25,15 @@ public class BEHelpers {
         latestResponse = util.getSearchResults(query, requestedPage, requestedPageSize);
     }
 
+    public void getSearchResultWithPriceFilter(String query, int amount, String minOrMax) {
+        if (minOrMax.equals("min")) { // test min price
+            latestResponse = util.getSearchResultsWithPriceFilter(query, amount, 99999999);
+        }
+        else { // test max price
+            latestResponse = util.getSearchResultsWithPriceFilter(query, 0, amount);
+        }
+    }
+
     public void verifyCodeOfLatestResponse(int expectedCode) {
         Assert.assertEquals(latestResponse.getStatusCode(), expectedCode, "Unexpected status code");
     }
@@ -35,9 +47,7 @@ public class BEHelpers {
         int statedPageSize = latestResponse.jsonPath().get("data.pageSize");
 
         if (actualDataCount == 0) {
-            Assert.assertTrue(statedPageSize == requestedPageSize,
-                    "if no results are given, stated page size should be same as requested page size"
-            );
+            Assert.assertEquals(requestedPageSize, statedPageSize, "if no results are given, stated page size should be same as requested page size");
         }
         else {
             Assert.assertEquals(actualDataCount, statedPageSize, "Data count did not mage state page size");
@@ -52,5 +62,19 @@ public class BEHelpers {
     public void verifyValueOfAnAttribute(String jsonPath, String expectedValue) {
         String actualValue = latestResponse.jsonPath().get(jsonPath);
         Assert.assertEquals(actualValue, expectedValue, "Value mismatch for jsonPath " + jsonPath);
+    }
+
+    public void verifyPriceFilter(String minOrMax, String price) {
+        int amount = Integer.parseInt(price);
+        List<Integer> allPrices = latestResponse.jsonPath().getList("data.data.basePrice");
+
+        for (Integer currentPrice : allPrices) {
+            if (minOrMax.equals("min")) { // minimum price must be above amount (inclusive)
+                Assert.assertTrue(currentPrice >= amount, "There is a value below the minimum: " + currentPrice);
+            }
+            else { // max price must be below amount (inclusive)
+                Assert.assertTrue(currentPrice <= amount, "There is a value above the maximum: " + currentPrice);
+            }
+        }
     }
 }
