@@ -17,7 +17,7 @@ public class FrontendStepDefs {
     }
 
     @After
-    public void closeBrower() {
+    public void closeBrowser() {
         common.closeDriver();
     }
 
@@ -37,12 +37,27 @@ public class FrontendStepDefs {
     }
 
     @Then("Verify that there are {int} results visible")
-    public void verifyThatThereAreResultsVisible(int expectedNumOfResults) {
+    public void verifyThatThereAreResultsVisible(int expectedNumOfResults) throws InterruptedException {
         searchResultsPage.verifyNumberOfResultsIsCorrect(expectedNumOfResults);
     }
 
     @When("User change the page results count to {int}")
     public void userChangeThePageResultsCountTo(int expectedResultsSize) {
         searchResultsPage.changeResultsSize(expectedResultsSize);
+    }
+
+    @And("Verify that empty results screen is shown")
+    public void verifyThatEmptyResultsScreenIsShown() {
+        searchResultsPage.verifyEmptyPageScreenVisible();
+    }
+
+    @And("User goes to the next page")
+    public void userGoesToTheNextPage() {
+        searchResultsPage.gotoNextPage();
+    }
+
+    @Then("Verify that user is in page {int}")
+    public void verifyThatUserIsInPage(int expectedPage) {
+        searchResultsPage.verifyCurrentHighlightedPage(expectedPage);
     }
 }

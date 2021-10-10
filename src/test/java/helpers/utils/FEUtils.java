@@ -54,7 +54,12 @@ public class FEUtils {
     }
 
     public void clickElement(String locator) {
+        waitUntilElementPresent(locator);
         getElement(locator).click();
+    }
+
+    public String getText(String locator) {
+        return getElement(locator).getText();
     }
 
     public void waitUntilElementPresent(String locator) {
@@ -76,6 +81,8 @@ public class FEUtils {
         switch (locatorType) {
             case "xpath":
                 return By.xpath(locatorValue);
+            case "css":
+                return By.cssSelector(locatorValue);
 
             default:
                 Assert.fail("Invalid locator type: " + locatorType);
