@@ -6,7 +6,7 @@ This project contains the solution to the QA test given to Aditya Jonany on Octo
 ## How to set up the project
 1. Pull this project into your local
 2. Open this project in your IDE
-3. Reimport the POM dependencies if required (most likely you won't need it)
+3. Import the POM dependencies if required
 
 ## How to run the whole feature test
 This will run the whole scenarios
