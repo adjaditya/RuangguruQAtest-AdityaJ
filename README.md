@@ -21,12 +21,12 @@ Lets say you only want to run the scenario to test the get API
 1. First, pick your scenario of choice from the src/test/java/features/gorestUsersAPITests.feature file
 2. look at the tag above with the "@" symbol
 3. Then go to the TestRunner class
-4. Update CucumberOptions Add the "tag" field under "plugin" field and include your choice. For example, if you want to run only @CurrentTest scenario, then update it like this:
+4. Update CucumberOptions Add the "tag" field under "plugin" field and include your choice. For example, if you want to run only @Frontend scenario, then update it like this:
   ```
   @CucumberOptions(
         features="src/test/java/features",
         glue={"stepDefs"},
         plugin={"html:target/reports/report.html"},
-        tags = "@CurrentTest"
+        tags = "@Frontend"
 )
 ```

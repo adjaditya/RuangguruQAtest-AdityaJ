@@ -25,7 +25,9 @@ public class FEUtils {
     }
 
     public void closeBrowserSession() {
-        driver.close();
+        if (driver != null) {
+            driver.close();
+        }
     }
 
     public List<WebElement> getElementsList (String locator) {

@@ -8,7 +8,7 @@ Feature: Skill Academy's main search bar test cases
   Scenario: User have to see the search bar in the main page
     Then Verify that the search bar is visible
 
-  @Sanity @Current
+  @Sanity
   Scenario: User searches using a basic search query
     When User searches with query "business"
     Then Verify that the search bar is visible
