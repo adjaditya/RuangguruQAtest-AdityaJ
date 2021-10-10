@@ -9,18 +9,21 @@ public class BEHelpers {
     APIUtils util;
     Response latestResponse;
 
-    int requestedPageSize = 20;
+    int defaultPage;
+    int defaultPageSize;
 
     public BEHelpers() {
         util = new APIUtils();
+        defaultPage = 1;
+        defaultPageSize  = 20;
+    }
+
+    public void getSearchResult(String query) {
+        latestResponse = util.getSearchResults(query, defaultPage, defaultPageSize);
     }
 
     public void verifyCodeOfLatestResponse(int expectedCode) {
         Assert.assertEquals(latestResponse.getStatusCode(), expectedCode, "Unexpected status code");
-    }
-
-    public void getSearchResult(String query) {
-        latestResponse = util.getSearchResults(query, requestedPageSize);
     }
 
     /**

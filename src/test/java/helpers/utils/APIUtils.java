@@ -12,10 +12,11 @@ public class APIUtils {
         searchUrl = "https://skillacademy.com/skillacademy/discovery/search";
     }
 
-    public Response getSearchResults(String query, int pageSize) {
+    public Response getSearchResults(String query, int page, int pageSize) {
         return RestAssured.given()
                 .contentType(ContentType.JSON)
                 .queryParam("searchQuery", query)
+                .queryParam("page", page)
                 .queryParam("pageSize", pageSize)
                 .when()
                 .get(searchUrl);
