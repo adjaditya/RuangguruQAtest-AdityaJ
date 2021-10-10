@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Command line test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sun Oct 10 12:41:21 ICT 2021</td>
+<td>Started on:</td><td>Sun Oct 10 14:46:45 ICT 2021</td>
 </tr>
-<tr><td>Total time:</td><td>0 seconds (516 ms)</td>
+<tr><td>Total time:</td><td>6 seconds (6077 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,5 +67,29 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='TestRunner.runScenario()'><b>runScenario</b><br>Test class: TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User have to see the search bar in the main page", "Optional[Skill Academy's main search bar test cases]"</td>
+<td><div><pre>java.lang.AssertionError: null
+	at helpers.CommonFEHelper.verifySearchBarIsPresent(CommonFEHelper.java:26)
+	at stepDefs.FrontendStepDefs.verifyThatTheSearchBarIsVisible(FrontendStepDefs.java:19)
+	at ?.Verify that the search bar is visible(file:///C:/Users/adity/OneDrive/Desktop/RuangguruQAtest/src/test/java/features/frontendTestCases.feature:11)
+... Removed 2 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace13928051", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace13928051'><pre>java.lang.AssertionError: null
+	at org.testng.Assert.fail(Assert.java:99)
+	at org.testng.Assert.fail(Assert.java:106)
+	at helpers.CommonFEHelper.verifySearchBarIsPresent(CommonFEHelper.java:26)
+	at stepDefs.FrontendStepDefs.verifyThatTheSearchBarIsVisible(FrontendStepDefs.java:19)
+	at ?.Verify that the search bar is visible(file:///C:/Users/adity/OneDrive/Desktop/RuangguruQAtest/src/test/java/features/frontendTestCases.feature:11)
+</pre></div></td>
+<td>5</td>
+<td>TestRunner@7bc1a03d</td></tr>
+</table><p>
 </body>
 </html>

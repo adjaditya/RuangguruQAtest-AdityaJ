@@ -1,1 +1,5 @@
+helpers\FEUtils.class
+stepDefs\BackendStepDefs.class
+stepDefs\FrontendStepDefs.class
 TestRunner.class
+helpers\CommonFEHelper.class

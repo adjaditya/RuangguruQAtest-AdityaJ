@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-TestRunner" class="navigator-link">
-              <span class="suite-name border-passed">TestRunner</span>
+              <span class="suite-name border-failed">TestRunner</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -61,7 +61,7 @@
                 </li>
                 <li>
                   <a href="#" panel-name="group-TestRunner" class="navigator-link ">
-                    <span>0 groups</span>
+                    <span>1 group</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,7 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">0 methods,   </span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-TestRunner" class="hide-methods failed suite-TestRunner"> (hide)</a> <!-- hide-methods failed suite-TestRunner -->
+                      <a href="#" panel-name="suite-TestRunner" class="show-methods failed suite-TestRunner"> (show)</a> <!-- show-methods failed suite-TestRunner -->
+                    </span>
+                    <div class="method-list-content failed suite-TestRunner">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-TestRunner" title="TestRunner" class="method navigator-link" hash-for-method="runScenario(&quot;User have to see the search bar in the main page&quot;, &quot;Optional[Skill Academy&#039;s main search bar test c...)">runScenario("User have to see the search bar in the main page", "Optional[Skill Academy's main search bar test c...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-TestRunner -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -105,6 +119,30 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-TestRunner" class="panel TestRunner">
+          <div class="suite-TestRunner-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">TestRunner</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;User have to see the search bar in the main page&quot;, &quot;Optional[Skill Academy&#039;s main search bar test c...)">
+                  </a> <!-- runScenario("User have to see the search bar in the main page", "Optional[Skill Academy's main search bar test c...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("User have to see the search bar in the main page", "Optional[Skill Academy's main search bar test cases]")</span>
+                  <div class="stack-trace">java.lang.AssertionError: null
+	at helpers.CommonFEHelper.verifySearchBarIsPresent(CommonFEHelper.java:26)
+	at stepDefs.FrontendStepDefs.verifyThatTheSearchBarIsVisible(FrontendStepDefs.java:19)
+	at ✽.Verify that the search bar is visible(file:///C:/Users/adity/OneDrive/Desktop/RuangguruQAtest/src/test/java/features/frontendTestCases.feature:11)
+... Removed 2 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-TestRunner-class-failed -->
         </div> <!-- panel TestRunner -->
         <div panel-name="test-xml-TestRunner" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -140,6 +178,14 @@
             <span class="header-content">Groups for TestRunner</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">cucumber</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">runScenario</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="times-TestRunner" class="panel">
@@ -156,12 +202,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(0);
+data.addRows(1);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'runScenario')
+data.setCell(0, 2, 'TestRunner')
+data.setCell(0, 3, 5588);
 window.suiteTableData['TestRunner']= { tableData: data, tableDiv: 'times-div-TestRunner'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 0 ms</span>
+              <span class="suite-total-time">Total running time: 5 seconds</span>
               <div id="times-div-TestRunner">
               </div> <!-- times-div-TestRunner -->
             </div> <!-- times-div -->
@@ -192,9 +242,15 @@ return data;
                 <span class="method-name">setUpClass</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("User have to see the search bar in the main page", "Optional[Skill Academy's main search bar test c...)</span>
+                <span class="method-start">437 ms</span>
+              </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">447 ms</span>
+                <span class="method-start">6029 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
