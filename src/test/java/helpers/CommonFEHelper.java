@@ -1,28 +1,30 @@
 package helpers;
 
-import org.openqa.selenium.WebDriver;
+import helpers.utils.FEUtils;
 import org.testng.Assert;
 
-public class CommonFEHelper {
+/**
+ * Common FE methods that can be used accross all Skill Academy pages
+ */
+public class CommonFEHelper extends FEUtils {
 
 //    LOCATORS------------------------
     String mainSearchBar = "xpath==//input[@placeholder='Kamu ingin menguasai skill apa hari ini?']";
 
-    FEUtils feUtil;
-
-    public CommonFEHelper() {
-        feUtil = new FEUtils();
-    }
-
     public void openUrl(String url) {
-        feUtil.openUrl(url);
+        initiateBrowser(url);
     }
 
     public void closeDriver() {
-        feUtil.closeDriver();
+        closeBrowserSession();
     }
 
     public void verifySearchBarIsPresent() {
-        Assert.assertTrue(feUtil.isElementPresent(mainSearchBar), "Search bar should be present");
+        Assert.assertTrue(isElementPresent(mainSearchBar), "Search bar should be present");
+    }
+
+    public void searchForQuery(String query) {
+        editInput(mainSearchBar, query);
+        clickEnter(mainSearchBar);
     }
 }

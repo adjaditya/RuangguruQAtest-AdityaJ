@@ -1,29 +1,31 @@
-package helpers;
+package helpers.utils;
 
 import io.cucumber.java.After;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.List;
 
 public class FEUtils {
 
-    WebDriver driver;
+    static WebDriver driver;
 
-    public void openUrl(String url) {
+    public void initiateBrowser(String url) {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get(url);
     }
 
-    @After
-    public void closeDriver() {
+    public void closeBrowserSession() {
         driver.close();
-        driver.quit();
     }
 
     public List<WebElement> getElementsList (String locator) {
@@ -40,6 +42,28 @@ public class FEUtils {
         return getElementsList(locator).size() > 0;
     }
 
+    public void editInput(String locator, String input) {
+        getElement(locator).clear();
+        getElement(locator).sendKeys(input);
+    }
+
+    public void clickEnter(String locator) {
+        getElement(locator).sendKeys(Keys.ENTER);
+    }
+
+    public void clickElement(String locator) {
+        getElement(locator).click();
+    }
+
+    public void waitUntilElementPresent(String locator) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(getByLocator(locator)));
+    }
+
+    public void printAllElementUnder(String locator) {
+        System.out.println(getElement(locator).getAttribute("innerHTML"));
+
+    }
 //    PRIVATE METHODS---------------------------------------
 
     private By getByLocator(String locator) {
